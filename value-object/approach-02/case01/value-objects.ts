@@ -1,30 +1,78 @@
-export interface ValueObject<T> extends Readonly<{ type: string; value: T; }> {}
+export interface IValueObject<T> extends Readonly<{ type: string; value: T; }> {}
 
-
-interface ValueObjectProps 
+abstract class StringValueObject implements IValueObject<string>
 {
-    [index: string]: any;
+    public readonly type: string;
+
+    constructor(
+        public readonly value: string
+    ) {}
+
+    toString(): string 
+    {
+        return this.value;
+    }
 }
 
-export abstract class ValueObject<T extends ValueObjectProps> 
+abstract class IntValueObject implements IValueObject<number>
 {
-    public readonly props: T;
-  
-    constructor (props: T) 
+    public readonly type: string;
+
+    constructor(
+        public readonly value: number
+    ) {}
+
+    toString(): string 
     {
-      this.props = Object.freeze(props);
+        return <string><unknown>this.value;
     }
-  
-    public equals (vo?: ValueObject<T>) : boolean 
+}
+
+abstract class ValueObject implements IValueObject<any>
+{
+    public readonly type: string;
+
+    constructor(
+        public readonly value: any
+    ) {}
+
+    toString(): string 
     {
-        if (vo === null || vo === undefined) 
-        {
-            return false;
-        }
-        if (vo.props === undefined) 
-        {
-            return false;
-        }
-        return shallowEqual(this.props, vo.props)
+        return <string><unknown>this.value;
+    }
+}
+
+export class Author extends StringValueObject 
+{
+    public readonly type: 'AUTHOR';
+
+    constructor(
+        public readonly value: string
+    )
+    {
+        super(value);    
+    }
+    
+}
+export class Title extends StringValueObject
+{
+    public readonly type: 'TITLE';
+
+    constructor(
+        public readonly value: string
+    )
+    {
+        super(value);    
+    }
+}
+export class Year extends IntValueObject 
+{
+    public readonly type: 'YEAR';
+
+    constructor(
+        public readonly value: number
+    )
+    {
+        super(value);    
     }
 }
