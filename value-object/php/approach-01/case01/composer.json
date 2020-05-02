@@ -1,0 +1,15 @@
+{
+    "name": "josecarlos.rodriguez/case01",
+    "authors": [
+        {
+            "name": "Carlos",
+            "email": "carlos.rodriguez@techedgegroup.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "": ["src", "src/value-objects"]
+        } 
+    }
+}
