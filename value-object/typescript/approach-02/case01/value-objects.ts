@@ -44,35 +44,13 @@ abstract class ValueObject implements IValueObject<any>
 
 export class Author extends StringValueObject 
 {
-    public readonly type: 'AUTHOR';
-
-    constructor(
-        public readonly value: string
-    )
-    {
-        super(value);    
-    }
-    
+    public readonly type: 'AUTHOR';    
 }
 export class Title extends StringValueObject
 {
     public readonly type: 'TITLE';
-
-    constructor(
-        public readonly value: string
-    )
-    {
-        super(value);    
-    }
 }
 export class Year extends IntValueObject 
 {
     public readonly type: 'YEAR';
-
-    constructor(
-        public readonly value: number
-    )
-    {
-        super(value);    
-    }
 }

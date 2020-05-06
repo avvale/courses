@@ -12,7 +12,7 @@ interface Rentable
 }
 
 // class
-class Hotel implements Rentable
+class Hotel extends RentableDecorator
 {
     private float $cost = 100;
     private string $type = 'Hotel';
@@ -112,14 +112,12 @@ class FullBoard extends RentableDecorator
     }
 }
 
-
-
 /****************************************************************
 **  MAIN
 ****************************************************************/
-
 $hotel = new Hotel('Hotel Marina');
 $hotel = new FirstBeachLine($hotel);
 $hotel = new FullBoard($hotel);
 
-echo $hotel->getDescription(). PHP_EOL;
+echo $hotel->getDescription() . PHP_EOL;
+echo $hotel->getBudget() . PHP_EOL;
